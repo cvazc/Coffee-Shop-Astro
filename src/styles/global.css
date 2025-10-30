@@ -1,4 +1,4 @@
-@import "tailwindcss"
+@import "tailwindcss";
 
 @theme {
     --default-font-family: "Outfit", sans-serif;
