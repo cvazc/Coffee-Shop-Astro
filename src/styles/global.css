@@ -2,6 +2,7 @@
 
 @theme {
     --default-font-family: "Outfit", sans-serif;
+    --font-mono: "PT Sans", sans-serif;
 
     --color-coffee-50: #fcf8ee;
     --color-coffee-100: #ebe7de;
