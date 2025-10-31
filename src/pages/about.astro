@@ -20,7 +20,7 @@ const data = BaseWPSchema.parse(json[0])
 			alt={`Imagen de ${data.title.rendered}`}
 			width={data.featured_images.medium_large.width}
 			height={data.featured_images.medium_large.height}
-			fomats={['avif', 'webp']}
+			formats={['avif', 'webp']}
 		/>
 
 		<div class="text-xl space-y-3 mt-10 lg:mt-0" set:html={data.content.rendered}></div>
