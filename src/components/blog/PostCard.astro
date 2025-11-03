@@ -20,6 +20,16 @@ const { post } = Astro.props
 				>{formatDate(post.date)}</span
 			>
 		</p>
+		{
+			post.category_details.map((category) => (
+				<a
+					href={`/blog/${post.slug}`}
+					class="inline-block py-1 px-5 bg-coffee-600 text-sm text-white mr-2 rounded"
+				>
+					{category.name}
+				</a>
+			))
+		}
 		<div set:html={post.content.rendered} class="line-clamp-2" />
 	</div>
 
