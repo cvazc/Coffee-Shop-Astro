@@ -2,7 +2,7 @@
 import { Picture, inferRemoteSize } from "astro:assets"
 import Layout from "@/layouts/Layout.astro"
 import { ProcessPageSchema } from "@/types"
-const url = "http://coffeeshop.local/wp-json/wp/v2/pages?slug=proceso"
+const url = `${import.meta.env.API_URL}/pages?slug=proceso`
 const res = await fetch(url)
 const json = await res.json()
 const data = ProcessPageSchema.parse(json[0])
