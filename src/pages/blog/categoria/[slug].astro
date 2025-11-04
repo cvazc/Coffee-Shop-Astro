@@ -1,5 +1,14 @@
 ---
+import { CategoriesSlugSchema } from "@/types"
 
+export async function getStaticPaths() {
+    const res = await fetch(`${import.meta.env.API_URL}/categories?_fields=slug`)
+    const json = await res.json()
+    const categories = CategoriesSlugSchema.parse(json)
+    return categories.map(category => ({
+        params: { slug: category.slug }
+    }))
+}
 
 ---
 
