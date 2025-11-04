@@ -1,0 +1,14 @@
+---
+import { formatDate } from "@/helpers"
+
+interface Props {
+    date: string
+}
+
+const { date } = Astro.props
+---
+
+<p class="text-sm">
+	Escrito el:
+	<span class="text-coffee-600">{formatDate(date)}</span>
+</p>
