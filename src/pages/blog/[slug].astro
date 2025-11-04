@@ -11,8 +11,9 @@ const { slug } = Astro.params
 const url = `${import.meta.env.API_URL}/posts?slug=${slug}`
 const res = await fetch(url)
 const json = await res.json()
-const post = PostSchema.parse(json[0])
-const { title, featured_images, date, category_details, content } = post
+const post = PostSchema.safeParse(json[0])
+if(!post.success) return Astro.redirect('/404')
+const { title, featured_images, date, category_details, content } = post.data
 ---
 
 <Layout
