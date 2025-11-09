@@ -1,5 +1,5 @@
 ---
-import { CategoriesSlugSchema, CategorySchema } from "@/types"
+import { CategoriesSlugSchema, CategorySchema, PostsSchema } from "@/types"
 
 export async function getStaticPaths() {
     const res = await fetch(`${import.meta.env.API_URL}/categories?_fields=slug`)
@@ -15,6 +15,11 @@ const categoryUrl = `${import.meta.env.API_URL}/categories?slug=${slug}`
 const categoryRes = await fetch(categoryUrl)
 const categoryJson = await categoryRes.json()
 const category = CategorySchema.parse(categoryJson[0])
+
+const postsUrl = `${import.meta.env.API_URL}/posts?categories=${category.id}`
+const postsRes = await fetch(postsUrl)
+const postsJson = await postsRes.json()
+const posts = PostsSchema.parse(postsJson)
 
 ---
 
