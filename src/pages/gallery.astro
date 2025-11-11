@@ -1,11 +1,12 @@
 ---
 import { Picture } from "astro:assets"
 import Layout from "@/layouts/Layout.astro"
-import { BaseWPSchema } from "@/types"
+import GalleryGrid from "@/components/gallery/GalleryGrid.astro"
+import { GalleryPageSchema } from "@/types"
 const url = `${import.meta.env.API_URL}/pages?slug=galeria`
 const res = await fetch(url)
 const json = await res.json()
-const data = BaseWPSchema.parse(json[0])
+const data = GalleryPageSchema.parse(json[0])
 ---
 
 <Layout
@@ -13,5 +14,7 @@ const data = BaseWPSchema.parse(json[0])
 	subtitle={data.acf.subtitle}
 	bgImage={data.featured_images.full.url}
 >
-	
+	<GalleryGrid 
+		gallery={data.gallery}
+	/>
 </Layout>

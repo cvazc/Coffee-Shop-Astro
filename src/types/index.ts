@@ -29,6 +29,15 @@ export const BaseWPSchema = z.object({
 	})
 })
 
+const gallerySchema = z.object({
+	large: imageSchema,
+	full: imageSchema
+})
+
+export const GalleryPageSchema = BaseWPSchema.extend({
+	gallery: z.array(gallerySchema)
+})
+
 const processSchema = z.object({
 	title: z.string(),
 	description: z.string(),
@@ -36,9 +45,11 @@ const processSchema = z.object({
 })
 
 export const ProcessPageSchema = BaseWPSchema.extend({
-    acf: z.object({
-        subtitle: z.string(),
-    }).catchall(processSchema)
+	acf: z
+		.object({
+			subtitle: z.string()
+		})
+		.catchall(processSchema)
 })
 
 export const CategorySchema = z.object({
@@ -47,9 +58,11 @@ export const CategorySchema = z.object({
 	slug: z.string()
 })
 
-export const CategoriesSlugSchema = z.array(CategorySchema.pick({
-	slug: true
-}))
+export const CategoriesSlugSchema = z.array(
+	CategorySchema.pick({
+		slug: true
+	})
+)
 
 const CategoriesSchema = z.array(CategorySchema)
 
@@ -63,3 +76,4 @@ export const PostSchema = BaseWPSchema.omit({
 export const PostsSchema = z.array(PostSchema)
 
 export type Post = z.infer<typeof PostSchema>
+export type Gallery = z.infer<typeof gallerySchema>
