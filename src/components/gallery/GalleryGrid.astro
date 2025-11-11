@@ -1,7 +1,22 @@
 ---
-import type { Gallery } from '@/types'
+import { Picture } from "astro:assets"
+import type { Gallery } from "@/types"
 interface Props {
-    gallery: Gallery[]
+	gallery: Gallery[]
 }
+const { gallery } = Astro.props
 ---
 
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+	{
+		gallery.map((image) => (
+			<Picture
+				src={image.large.url}
+				alt="Galeria de imagenes"
+				width={image.large.width}
+				height={image.large.height}
+				formats={["avif", "webp"]}
+			/>
+		))
+	}
+</div>
